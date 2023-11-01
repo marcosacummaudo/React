@@ -1,16 +1,12 @@
 import { CartWidget } from "../CartWidget/CartWidget"
-
-
+import { ImgLogo } from "../ImgLogo/ImgLogo"
 
 export const NavBar = () => {
   return (
     <>
-
-
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-      {/* <nav className="navbar navbar-expand-sm"> */}
         <div className="col-2 justify-content-left">
-          <h3>HOLA LOGO</h3>
+          <ImgLogo/>
         </div>
         <div className="col-8 container-fluid justify-content-center">
           <ul className="navbar-nav">
@@ -32,9 +28,6 @@ export const NavBar = () => {
           <CartWidget/>
         </div>
       </nav>
-    
-    
-
     </>
     
   )
