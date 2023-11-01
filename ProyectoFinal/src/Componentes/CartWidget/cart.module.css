@@ -1,0 +1,14 @@
+.imagen {
+    width: 50%;
+    height: 100%;
+
+}
+
+.numero {
+    width: 50%;
+    color: white;
+    font-size: 40px;
+    margin-left: 0;
+    padding-left: 0;
+    text-align: left;
+}
