@@ -1,6 +1,8 @@
 
 export const ImgLogo = () => {
   return (
-    <img src="" alt="" />
+    <>
+    <img src="/img/LogoGOAT.png" alt="LogoGoat" style={{width: "55px"}}/>
+    </>
   )
 }

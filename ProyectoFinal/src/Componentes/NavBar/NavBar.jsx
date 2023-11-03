@@ -5,7 +5,8 @@ export const NavBar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div className="col-2 justify-content-left">
+        {/* <div className="col-2 justify-content-left"> */}
+        <div className="col-2 d-flex justify-content-center">
           <ImgLogo/>
         </div>
         <div className="col-8 container-fluid justify-content-center">
@@ -17,14 +18,14 @@ export const NavBar = () => {
               <a className="nav-link" href="#">Galeria</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Link2</a>
+              <a className="nav-link" href="#">Productos</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Link3</a>
+              <a className="nav-link" href="#">Contacto</a>
             </li>
           </ul>
         </div>
-        <div className="col-2 justify-content-rigth">
+        <div className="col-2 d-flex justify-content-center">
           <CartWidget/>
         </div>
       </nav>
