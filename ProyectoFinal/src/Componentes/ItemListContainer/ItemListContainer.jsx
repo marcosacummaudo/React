@@ -1,13 +1,11 @@
 import styles from "./items.module.css"
 
-export const ItemListContainer = () => {
+export const ItemListContainer = ( { greeting }) => {
   return (
     <>
-    <div className= {` container text-center `} >
-      <h1 className={styles.texto}>Hola, bienvenidos a la tienda de ...</h1>
-
-    </div>
-    
+    <main className= {` container text-center `} >
+      <h1 className={styles.texto}> { greeting }</h1>
+    </main>
     
     
     </>

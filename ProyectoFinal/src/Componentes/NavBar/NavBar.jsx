@@ -11,10 +11,10 @@ export const NavBar = () => {
         <div className="col-8 container-fluid justify-content-center">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" href="#">Active</a>
+              <a className="nav-link active" href="#">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Link1</a>
+              <a className="nav-link" href="#">Galeria</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Link2</a>
