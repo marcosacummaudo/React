@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { CartWidget } from "../CartWidget/CartWidget"
 import { ImgLogo } from "../ImgLogo/ImgLogo"
 
@@ -5,28 +6,39 @@ export const NavBar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-        {/* <div className="col-2 justify-content-left"> */}
         <div className="col-2 d-flex justify-content-center">
-          <ImgLogo/>
+          <Link to="/">
+            <ImgLogo/>
+          </Link>
         </div>
         <div className="col-8 container-fluid justify-content-center">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link active" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Galeria</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Productos</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Contacto</a>
-            </li>
+            <Link to="/">
+              <li className="nav-item">
+                <p className="nav-link">Home</p>
+              </li>
+            </Link>
+            <Link to="/category/f11">
+              <li className="nav-item">
+                <p className="nav-link">Futbol 11</p>
+              </li>
+            </Link>
+            <Link to="/category/f5">
+              <li className="nav-item">
+                <p className="nav-link">Futbol 5</p>
+              </li>
+            </Link>
+            <Link to="/category/futsal">
+              <li className="nav-item">
+                <p className="nav-link">Futsal</p>
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="col-2 d-flex justify-content-center">
-          <CartWidget/>
+          <Link to="/cart">
+            <CartWidget/>
+          </Link>
         </div>
       </nav>
     </>
