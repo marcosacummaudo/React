@@ -1,7 +1,7 @@
-import styles from "./producto.module.css"
+import styles from "./Item.module.css"
 import { Link } from "react-router-dom"
 
-export const Producto = ({ id, name, img, description, precio, marca }) => {
+export const Item = ({ id, name, img, precio, marca }) => {
   return (
 
 <div className="card align-items-center" style={{width: "18rem"}}>
@@ -11,7 +11,7 @@ export const Producto = ({ id, name, img, description, precio, marca }) => {
     <p className="card-text">{marca}</p>
     <p className="card-text">${precio}</p>
     <Link to={`/item/${id}`}>
-      <p className="btn btn-primary">Ver Detalles</p>
+      <p className="btn btn-primary">Detalles</p>
     </Link>
   </div>
 </div>
