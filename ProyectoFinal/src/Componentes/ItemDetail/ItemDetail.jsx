@@ -2,10 +2,6 @@ import { ItemCount } from "../ItemCount/ItemCount";
 
 export const ItemDetail = ({ name, marca, category, description, img, precio, stock }) => {
 
-  const onAdd = (items) => { 
-    alert(`Se agregaron ${items} al carrito`)
- }
-
   return (
     <>
     <div className="container d-flex flex-column align-items-center">
@@ -24,7 +20,7 @@ export const ItemDetail = ({ name, marca, category, description, img, precio, st
             </div>
           </div>
             <div className="row g-0 align-items-center">
-              <ItemCount stock={stock} onAdd={onAdd} />
+              <ItemCount stock={stock} />
             </div>
         </div>
       </div>
