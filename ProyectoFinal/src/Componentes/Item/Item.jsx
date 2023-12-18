@@ -2,7 +2,8 @@ import styles from "./Item.module.css"
 import { Link } from "react-router-dom"
 
 export const Item = ({ id, name, img, precio, marca }) => {
-  return (
+  
+return (
 
 <div className="card align-items-center" style={{width: "18rem"}}>
   <img src={img} className={ `card-img-top ${styles.imagen}`} alt="..."/>

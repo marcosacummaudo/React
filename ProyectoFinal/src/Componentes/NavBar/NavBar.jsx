@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom"
 import { CartWidget } from "../CartWidget/CartWidget"
 import { ImgLogo } from "../ImgLogo/ImgLogo"
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 export const NavBar = () => {
+
+  const { totalQuantity } = useContext(CartContext);
+
   return (
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -36,9 +41,7 @@ export const NavBar = () => {
           </ul>
         </div>
         <div className="col-2 d-flex justify-content-center">
-          <Link to="/cart">
-            <CartWidget/>
-          </Link>
+          {totalQuantity != 0 ? <Link to="/cart"><CartWidget/></Link> : <CartWidget/>}
         </div>
       </nav>
     </>

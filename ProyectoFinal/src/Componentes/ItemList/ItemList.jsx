@@ -5,8 +5,6 @@ import { FirebaseContext } from "../../context/FirebaseContext";
 export const ItemList = ( ) => {
 
   const { products } = useContext(FirebaseContext);
-  //const { producto, productos, getProductsDB, getProductById, isLoading } = useContext(FirebaseContext);
-  //console.log("No hay productos en la base de datos");
 
   return (
     <>
