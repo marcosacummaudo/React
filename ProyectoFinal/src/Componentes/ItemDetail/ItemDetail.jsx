@@ -5,8 +5,6 @@ export const ItemDetail = (product) => {
 
   const { id, name, marca, category, description, img, precio } = product
 
-  console.log(id)
-
   return (
     <>
     { (id === undefined) ? ( <MensajeError texto={"El producto no existe."} /> ) : (
@@ -18,10 +16,10 @@ export const ItemDetail = (product) => {
               </div>
               <div className="col-md-8">
                 <div className="card-body">
-                  <h5 className="card-title">{name}</h5>
-                    <p className="card-text">Marca: {marca}</p>
-                    <p className="card-text">Categoria: {category}</p>
-                    <p className="card-text">Precio: ${precio}</p>
+                  <h2 className="card-title">{name}</h2>
+                    <h5 className="card-text">Marca: {marca}</h5>
+                    <h6 className="card-text">Categoria: {category}</h6>
+                    <h6 className="card-text">Precio: ${precio}</h6>
                     <p className="card-text"><small className="text-body-secondary">{description}</small></p>
                 </div>
               </div>

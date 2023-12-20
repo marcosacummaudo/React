@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import { FirebaseContext } from "../../context/FirebaseContext";
 import { CartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom"
 
 
 export const FormCompra = () => {
 
-  const { cartItems, totalCartItems, clearCartItems, totalQuantity } = useContext(CartContext);
+  const { cartItems, totalCartItems, clearCartItems } = useContext(CartContext);
   const { addOrderDB } = useContext(FirebaseContext);
 
   const [nombre, setNombre] = useState('');
@@ -13,26 +14,26 @@ export const FormCompra = () => {
   const [telefono, setTelefono] = useState(0);
   const [email, setEmail] = useState('');
   const [email2, setEmail2] = useState('');
+  //const [habilita, setHabilita] = useState(false);
 
 
-  const handleBlurConfirma = (e) => {
-    setEmail2(e.target.value)
+  const handleHabilita = () => {
 
-    console.log(nombre)
-    console.log(apellido)
-    console.log(telefono)
-    console.log(email)
-    console.log(email2)
+    if(nombre == '') {alert('Debe completar el nombre');}
 
-    if (email !== email2) {
-      alert('Los emails no coinciden.');
-    }
+    if(apellido == '') {alert('Debe completar el apellido');}
+
+    if(telefono == 0) {alert('Debe completar el telefono');}
+
+    if(email == '') {alert('Debe completar el nombre');}
+
+    if(email2 == '') {alert('Debe completar el nombre');}
+    
+    if (email !== email2) {alert('Los emails no coinciden. Los Emails ingresados deben ser iguales');}
   };
 
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
+  const handleFormSubmit = () => {
+    
     if (email !== email2 || email === '') {
       alert('Los emails no coinciden. Los Emails ingresados deben ser iguales');
     } else {
@@ -40,16 +41,11 @@ export const FormCompra = () => {
     }
 
     clearCartItems();
-    setNombre('');
-    setApellido('');
-    setTelefono(0);
-    setEmail('');
-    setEmail2('');
   };
 
   return (
     <>
-      <form onSubmit={handleFormSubmit} className="col-md-10 pe-5 border-end border-dark">
+      <form className="col-md-10 pe-5 border-end border-dark">
         <h4 className="d-flex justify-content-start">Ingrese sus datos personales:</h4>
         <div className="form-group">
           <label>Nombre</label>
@@ -69,41 +65,31 @@ export const FormCompra = () => {
         </div>
         <div className="form-group">
           <label>Confimación Email</label>
-          <input type="email" className="form-control" id="exampleInputEmail2" onChange={handleBlurConfirma} placeholder="Confirme email"/>
+          <input type="email" className="form-control" id="exampleInputEmail2" onChange={(e) => setEmail2(e.target.value)} placeholder="Confirme email"/>
           <small id="emailHelp" className="form-text text-muted">Asegurese de ingresar el mismo email.</small>
         </div>
-          {/* <button type="submit" className="btn btn-dark">Confirmar Compra</button> */}
-          {totalQuantity != 0 ? <button type="submit" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">Comprar</button> : <button type="submit" className="btn btn-dark disabled">Confirmar Compra</button>}
-      
-      
-                    {/* <!-- The Modal --> */}
-                    <div className="modal fade" id="myModal">
-                      <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-
-                          {/* <!-- Modal Header --> */}
-                          <div className="modal-header">
-                            <h4 className="modal-title">Blanquear Carrito</h4>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
-                          </div>
-
-                          {/* <!-- Modal body --> */}
-                          <div className="modal-body">
-                            ¿Esta seguro que desea borrar todos los articulos del carrito?
-                          </div>
-
-                          {/* <!-- Modal footer --> */}
-                          <div className="modal-footer">
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <Link to="/"><button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => clearCartItems()}>Aceptar</button></Link>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div> 
-      
-      
-      
+        { (nombre !=='' && apellido !=='' && telefono !== 0 && email !== '' && email2 !== '' && email===email2) ? 
+        <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal1" >Comprar</button> : 
+        <button type="button" className="btn btn-dark" onClick={() => handleHabilita()} >Comprar</button>
+        }
+            {/* <!-- Modal --> */}
+          <div className="modal fade" id="exampleModal1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1 className="modal-title fs-5" id="exampleModalLabel">Confirmación de Compra</h1>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                  Esta por confirmar su compra ¿Esta seguro?
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <Link to="/ConfirmaCompra"><button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => handleFormSubmit()} >Aceptar</button></Link>
+                </div>
+              </div>
+            </div>
+          </div>
       </form>
     </>
   )

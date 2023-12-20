@@ -9,6 +9,7 @@ export const FirebaseContextProvider = ({ children }) => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [idCompra, setIdCompra] = useState('');
+  const [order, setOrder] = useState([]);
 
   const getProductsDB = (category) => {
     setIsLoading(true);
@@ -26,6 +27,7 @@ export const FirebaseContextProvider = ({ children }) => {
   };
 
   const getProductById = (id) => {
+    setIsLoading(true);
     const productRef = doc(db, "products", id);
     getDoc(productRef).then((resp) => {
       // Verificar si el producto existe
@@ -42,62 +44,60 @@ export const FirebaseContextProvider = ({ children }) => {
     });
   };
 
-//   const discountStock = async (product) => { 
-//     const productRef = doc( db, "products", product.id );
-//     const newStock = product.stock - 1;
-//     await updateDoc(productRef, { stock: newStock } )
-    
-//  }
+  const agregarNuevoRegistro = async (datosCompra) => {
+    try {
+      const docRef = await addDoc(collection(db, 'orders'), datosCompra);
+      setIdCompra(docRef.id)
+      //console.log('Nuevo registro añadido con el ID:', idCompra);
+    } catch (error) {
+      console.error('Error al añadir el nuevo registro:', error);
+    }
+  };
 
-
-const agregarNuevoRegistro = async (datosCompra) => {
-  try {
-    const docRef = await addDoc(collection(db, 'orders'), datosCompra);
-    setIdCompra(docRef.id)
-    console.log('Nuevo registro añadido con el ID:', idCompra);
-  } catch (error) {
-    console.error('Error al añadir el nuevo registro:', error);
+  const addOrderDB = (cartProducts, userData, total) => { 
+    setIsLoading(true);
+    const newOrder = {
+      buyer: userData,
+      items: cartProducts,
+      data: serverTimestamp(),
+      estado: 'generada',
+      total
+    }
+    //console.log(newOrder)
+    agregarNuevoRegistro(newOrder);
+    setIsLoading(false);
   }
-};
 
- const addOrderDB = (cartProducts, userData, total) => { 
-  const newOrder = {
-    buyer: userData,
-    items: cartProducts,
-    data: serverTimestamp(),
-    estado: 'generada',
-    total
-  }
-  console.log(newOrder)
-  agregarNuevoRegistro(newOrder)
-  // addDoc( collection(db, "orders"), newOrder );
-  // const docRef = addDoc(collection(db, 'orders'), newOrder);
-  // console.log('Nuevo registro añadido con el ID:', docRef.id);
-}
-
-
-
-// const agregarNuevoDocumento = async (datos) => {
-//   try {
-//     const docRef = await firestore.collection('tuColeccion').add(datos);
-//     console.log('Nuevo documento ID:', docRef.id);
-//   } catch (error) {
-//     console.error('Error al agregar el documento:', error);
-//   }
-// };
-
-
+  const getOrderById = (id) => {
+    setIsLoading(true);
+    const orderRef = doc(db, "orders", id);
+    getDoc(orderRef).then((resp) => {
+      // Verificar si el producto existe
+      if (resp.exists()) {
+        const ord = {
+          id: resp.id,
+          ...resp.data(),
+        };
+        setOrder(ord);
+      } else {
+        setOrder(undefined);
+      }
+      setIsLoading(false);
+    });
+  };
 
 
   const objetValue = {
     products,
     product,
     isLoading,
+    idCompra,
+    order,
     getProductsDB,
     getProductById,
     //discountStock,
     addOrderDB,
-    idCompra
+    getOrderById,
   };
 
   return <FirebaseContext.Provider value={objetValue}> {children} </FirebaseContext.Provider>;

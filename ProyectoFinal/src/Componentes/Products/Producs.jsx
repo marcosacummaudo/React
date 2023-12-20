@@ -47,6 +47,7 @@ export const Products = () => {
   useEffect(() => {
     setIsLoading(true);
     getProductsDB();
+    getProductById(id);
     // getProductById("Aw2M2CLEYrF3iDAKlH8H")
 
     console.log(product)

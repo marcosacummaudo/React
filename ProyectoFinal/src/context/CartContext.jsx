@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { Redirect } from 'react-router-dom';
+//import { Link } from "react-router-dom"
+//import { Redirect } from 'react-router-dom';
 
 export const CartContext = createContext(null);
 
@@ -14,9 +15,9 @@ export const CartContextProvider = ({ children }) => {
   //   compraActual !== null && cart.push(...cart)
   // }
   
-  const guardarCarritoStorage = (cart) => {
-    localStorage.setItem("carrito", JSON.stringify(cart))
-  }
+  // const guardarCarritoStorage = (cart) => {
+  //   localStorage.setItem("carrito", JSON.stringify(cart))
+  // }
 
   //const carritoRecuperado = recuperarCarritoStorage(cartItems)
 
@@ -55,13 +56,14 @@ export const CartContextProvider = ({ children }) => {
     const arrayFilter = cartItems.filter( item => item.id !== id );
     setCartItems(arrayFilter);        
 
-    if (cartItems.length === 0) {
-      return <Redirect to="/" />;
-    }
+    console.log(cartItems)
+
   }
 
   const clearCartItems = () => { 
-    setCartItems([]);        
+
+    setCartItems([]);
+    
   }
 
   const handleTotal = () => {
@@ -78,8 +80,8 @@ export const CartContextProvider = ({ children }) => {
     handleTotal();
     handleTotalQuantity();
     //recuperarCarritoStorage(cartItems)
-    console.log(cartItems)
-    guardarCarritoStorage(cartItems)
+    //console.log(cartItems)
+    //guardarCarritoStorage(cartItems)
   }, [cartItems] )
 
   const objetValue = {

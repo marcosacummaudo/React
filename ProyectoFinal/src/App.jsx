@@ -5,6 +5,7 @@ import { ItemDetailContainer } from "./Componentes/ItemDetailContainer/ItemDetai
 import { Cart } from "./Componentes";
 import { CartContextProvider } from "./context/CartContext";
 import { FirebaseContextProvider } from "./context/FirebaseContext";
+import { ConfirmaCompra } from "./Componentes/ConfirmaCompra/ConfirmaCompra";
 
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
           <NavBar />
             <Routes>
               <Route path="/" element={<ItemListContainer greeting={"¡Hola, bienvenidos a GOAT, tienda de botines!"} />} />
-              <Route path="/category/:category" element={<ItemListContainer />} />
-              <Route path="/item/:id" element={<ItemDetailContainer />} />
+              <Route path="/category/:category" element={<ItemListContainer/>} />
+              <Route path="/item/:id" element={<ItemDetailContainer/>} />
               <Route path="/cart" element={<Cart/>} />
+              <Route path="/ConfirmaCompra" element={<ConfirmaCompra/>} />
             </Routes>
         </BrowserRouter>
       </CartContextProvider>

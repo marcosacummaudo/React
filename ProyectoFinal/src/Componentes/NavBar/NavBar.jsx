@@ -10,32 +10,32 @@ export const NavBar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav className="navbar navbar-expand-sm bg-dark navbar-dark p-0">
         <div className="col-2 d-flex justify-content-center">
           <Link to="/">
             <ImgLogo/>
           </Link>
         </div>
-        <div className="col-8 container-fluid justify-content-center">
+        <div className="col-8 d-flex justify-content-center">
           <ul className="navbar-nav">
-            <Link to="/">
+            <Link to="/" className="flex-column d-flex justify-content-center">
               <li className="nav-item">
-                <p className="nav-link">Home</p>
+                <p className="nav-link m-0">Home</p>
               </li>
             </Link>
-            <Link to="/category/f11">
+            <Link to="/category/f11" className="flex-column d-flex justify-content-center">
               <li className="nav-item">
-                <p className="nav-link">Futbol 11</p>
+                <p className="nav-link m-0">Futbol 11</p>
               </li>
             </Link>
-            <Link to="/category/f5">
+            <Link to="/category/f5" className="flex-column d-flex justify-content-center">
               <li className="nav-item">
-                <p className="nav-link">Futbol 5</p>
+                <p className="nav-link m-0">Futbol 5</p>
               </li>
             </Link>
-            <Link to="/category/futsal">
+            <Link to="/category/futsal" className="flex-column d-flex justify-content-center">
               <li className="nav-item">
-                <p className="nav-link">Futsal</p>
+                <p className="nav-link m-0">Futsal</p>
               </li>
             </Link>
           </ul>

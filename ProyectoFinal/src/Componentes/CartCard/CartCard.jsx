@@ -10,7 +10,7 @@ export const CartCard = (item) => {
 
     const { cartItems, removeItem } = useContext(CartContext);
 
-    console.log(cartItems)
+    //console.log(cartItems)
    
   return (
     <>
@@ -27,9 +27,15 @@ export const CartCard = (item) => {
                 </div>
             </div>
             <div className="col-md-1 d-flex align-items-center justify-content-center">
+                { cartItems.length == 1 ? 
+                <Link to="/">
+                    <button type="button" className="btn btn-outline-light text-dark" onClick={() => removeItem(id)}>
+                        <img style={{width: "120%"}} src="/img/trash-2.svg" alt="tacho"/>
+                    </button>
+                </Link> :
                 <button type="button" className="btn btn-outline-light text-dark" onClick={() => removeItem(id)}>
                     <img style={{width: "120%"}} src="/img/trash-2.svg" alt="tacho"/>
-                </button>
+                </button> }
             </div>
         </div>
     </div>
