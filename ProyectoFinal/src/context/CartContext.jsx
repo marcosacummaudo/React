@@ -1,43 +1,20 @@
 import { createContext, useEffect, useState } from "react";
-//import { Link } from "react-router-dom"
-//import { Redirect } from 'react-router-dom';
 
 export const CartContext = createContext(null);
 
 export const CartContextProvider = ({ children }) => {
-
   const [cartItems, setCartItems] = useState([]);
   const [totalCartItems, setTotalCartItems] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
-  
-  // const recuperarCarritoStorage = (cart) => {
-  //   const compraActual = JSON.parse(localStorage.getItem("carrito"))
-  //   compraActual !== null && cart.push(...cart)
-  // }
-  
-  // const guardarCarritoStorage = (cart) => {
-  //   localStorage.setItem("carrito", JSON.stringify(cart))
-  // }
-
-  //const carritoRecuperado = recuperarCarritoStorage(cartItems)
-
 
   const addItem = (item, quantity) => {
     const { id, name, precio, img } = item;
-    //console.log(item)
-    //console.log(quantity)
-    // Buscamos la posición indice del producto dentro del carrito
     const index = cartItems.findIndex((product) => product.id === id);
-    //console.log(index)
     if (index !== -1) {
-      // Si el resulta de index no es -1
-      // Hacemos una copia del state
       const cartItemsCopy = [...cartItems];
-      // Modificamos la cantidad del producto aumentando el valor con la cantidad recibida
       cartItemsCopy[index].quantity += quantity;
-      // Modificamos el subtotal con la nueva cantidad
-      cartItemsCopy[index].subTotal = cartItemsCopy[index].quantity * cartItemsCopy[index].precio;
-      // Reemplazamos el state original con la copia
+      cartItemsCopy[index].subTotal =
+        cartItemsCopy[index].quantity * cartItemsCopy[index].precio;
       setCartItems(cartItemsCopy);
     } else {
       const newItem = {
@@ -48,41 +25,33 @@ export const CartContextProvider = ({ children }) => {
         quantity,
         subTotal: quantity * precio,
       };
-      setCartItems([...cartItems, newItem])
+      setCartItems([...cartItems, newItem]);
     }
   };
 
-  const removeItem = (id) => { 
-    const arrayFilter = cartItems.filter( item => item.id !== id );
-    setCartItems(arrayFilter);        
+  const removeItem = (id) => {
+    const arrayFilter = cartItems.filter((item) => item.id !== id);
+    setCartItems(arrayFilter);
+  };
 
-    console.log(cartItems)
-
-  }
-
-  const clearCartItems = () => { 
-
+  const clearCartItems = () => {
     setCartItems([]);
-    
-  }
+  };
 
   const handleTotal = () => {
-    const total = cartItems.reduce( (acum, item) => acum + item.subTotal, 0 );
+    const total = cartItems.reduce((acum, item) => acum + item.subTotal, 0);
     setTotalCartItems(total);
-  }
+  };
 
-  const handleTotalQuantity = () => { 
-    const total = cartItems.reduce( (acum, item) => acum + item.quantity, 0 );
+  const handleTotalQuantity = () => {
+    const total = cartItems.reduce((acum, item) => acum + item.quantity, 0);
     setTotalQuantity(total);
-  }
+  };
 
-  useEffect( () => { 
+  useEffect(() => {
     handleTotal();
     handleTotalQuantity();
-    //recuperarCarritoStorage(cartItems)
-    //console.log(cartItems)
-    //guardarCarritoStorage(cartItems)
-  }, [cartItems] )
+  }, [cartItems]);
 
   const objetValue = {
     cartItems,
@@ -90,9 +59,10 @@ export const CartContextProvider = ({ children }) => {
     totalQuantity,
     addItem,
     removeItem,
-    clearCartItems
+    clearCartItems,
   };
 
-  return <CartContext.Provider value={objetValue}> {children} </CartContext.Provider>;
-
+  return (
+    <CartContext.Provider value={objetValue}> {children} </CartContext.Provider>
+  );
 };

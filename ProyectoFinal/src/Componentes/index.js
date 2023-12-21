@@ -1,5 +1,10 @@
 export * from './Cart/Cart';
+export * from './CartCard/CartCard';
 export * from './CartWidget/CartWidget';
+export * from './ConfirmaCompra/ConfirmaCompra';
+export * from './DetalleCompra/DetalleCompra';
+export * from './DetalleItemsCompra/DetalleItemsCompra';
+export * from './FormCompra/FormCompra';
 export * from './ImgLogo/ImgLogo';
 export * from './Item/Item';
 export * from './ItemCount/ItemCount';
@@ -8,5 +13,5 @@ export * from './ItemDetailContainer/ItemDetailContainer';
 export * from './ItemList/ItemList';
 export * from './ItemListContainer/ItemListContainer';
 export * from './Loading/Loading';
+export * from './MensajeError/MensajeError';
 export * from './NavBar/NavBar';
-export * from './asyncMock';

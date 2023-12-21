@@ -1,18 +1,19 @@
 .imagen {
-    width: 50%;
-    height: 70px;
-    margin-right: 0;
-    padding-right: 1%;
-    padding-top: 0;
-    padding-left: 35px;
+  width: 50%;
+  height: 70px;
+  margin-right: 0;
+  padding-right: 1%;
+  padding-top: 0;
+  padding-left: 35px;
 }
 
 .numero {
-    width: 50%;
-    color: white;
-    font-size: 35px;
-    margin-top: 9%;
-    padding-left: 1%;
-    text-align: left;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  width: 50%;
+  color: white;
+  font-size: 35px;
+  margin-top: 9%;
+  padding-left: 1%;
+  text-align: left;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
